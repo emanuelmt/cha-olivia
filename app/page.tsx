@@ -1,4 +1,6 @@
 "use client";
+
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 import ScrollDownButton from "@/components/ScrollDownButton";
@@ -7,7 +9,7 @@ import InvitePage from "../pages/InvitePage";
 import GiftPage from "@/pages/GiftPage";
 import RVSPPage from "@/pages/RVSPPage";
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const invited = searchParams?.getAll("nome") ?? [];
 
@@ -23,10 +25,17 @@ export default function Home() {
       <ScrollDownButton className="absolute bottom-10 left-1/2 transform -translate-x-1/2  z-20" />
 
       <InitialPage />
-      <InvitePage/>
-      <GiftPage invited={invited}/>
-      <RVSPPage invited={invited}/>
-
+      <InvitePage />
+      <GiftPage invited={invited} />
+      <RVSPPage invited={invited} />
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Carregando...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
