@@ -1,17 +1,15 @@
-"use client";
-
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-
 import ScrollDownButton from "@/components/ScrollDownButton";
 import InitialPage from "../pages/InitialPage";
 import InvitePage from "../pages/InvitePage";
 import GiftPage from "@/pages/GiftPage";
 import RVSPPage from "@/pages/RVSPPage";
 
-function HomeContent() {
-  const searchParams = useSearchParams();
-  const invited = searchParams?.getAll("nome") ?? [];
+export default function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  const invited = Array.isArray(searchParams.nome)
+    ? searchParams.nome
+    : searchParams.nome
+    ? [searchParams.nome]
+    : [];
 
   return (
     <main
@@ -29,13 +27,5 @@ function HomeContent() {
       <GiftPage invited={invited} />
       <RVSPPage invited={invited} />
     </main>
-  );
-}
-
-export default function Home() {
-  return (
-    <Suspense fallback={<div>Carregando...</div>}>
-      <HomeContent />
-    </Suspense>
   );
 }
