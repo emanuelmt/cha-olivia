@@ -36,5 +36,12 @@ html, body, #__next {
   overflow: hidden;
   overflow-x: hidden;
   padding: 0px !important;
-  background: white !important;
+  background-color: #ffffff !important;
+  color-scheme: only light;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #ffffff !important;
+  }
 }
