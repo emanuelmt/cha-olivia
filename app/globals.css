@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+
+@theme {
+  --font-poppins: Poppins, sans-serif;
+  --font-questrial: "Questrial", sans-serif;
+  --font-parisienne: "Parisienne", cursive;
+  --background: #ffffff;
+  --foreground: #171717; 
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-primary: #8f6fbb;
+  --color-secondary: #acab81;
+}
+
+.font-questrial {
+  font-family: var(--font-questrial);
+}
+
+.font-parisienne {
+  font-family: var(--font-parisienne);
+}
+
+.clip-arrow {
+  clip-path: polygon(
+    10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%
+  );
+}
+
+html, body, #__next {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  overflow-x: hidden;
+  padding: 0px !important;
+}
