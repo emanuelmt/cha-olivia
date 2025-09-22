@@ -12,6 +12,7 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
     : [];
 
   return (
+    <div className="absolute inset-0 bg-white z-0"></div>
     <main
       className="h-screen w-screen snap-y snap-mandatory overflow-y-scroll bg-[url(/FundoXadrez.svg)] bg-center bg-repeat bg-size-[auto_750px] overflow-hidden"
       style={{
