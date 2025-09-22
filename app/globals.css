@@ -36,6 +36,7 @@ html, body, #__next {
   overflow: hidden;
   overflow-x: hidden;
   padding: 0px !important;
+  background: #ffffff !important;
   background-color: #ffffff !important;
   color-scheme: only light;
 }
