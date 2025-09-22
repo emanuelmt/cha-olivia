@@ -36,4 +36,5 @@ html, body, #__next {
   overflow: hidden;
   overflow-x: hidden;
   padding: 0px !important;
+  background: white !important;
 }
