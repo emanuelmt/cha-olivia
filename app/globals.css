@@ -36,4 +36,22 @@ html, body, #__next {
   overflow: hidden;
   overflow-x: hidden;
   padding: 0px !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color-scheme: only light;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #ffffff !important;
+  }
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: -1;
+}
+
