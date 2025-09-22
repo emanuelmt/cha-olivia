@@ -9,7 +9,7 @@ import RVSPPage from "@/pages/RVSPPage";
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const invited = searchParams.getAll("nome");
+  const invited = searchParams.getAll("nome") ?? [];
 
   return (
     <main
