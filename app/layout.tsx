@@ -26,8 +26,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        <meta name="color-scheme" content="light">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="color-scheme" content="light"/>
+        <meta name="theme-color" content="#ffffff"/>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
