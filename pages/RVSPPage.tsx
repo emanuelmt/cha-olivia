@@ -34,8 +34,8 @@ const sad = "\uD83D\uDE22";   // 😢
         : `${sad} Eiii Pati, infelizmente não conseguiremos ir ao chá da Olívia! Mas estamos muito ansiosos pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.`;
     } else {
       intro = isSingle
-        ? "🎉 Eiii Pati, nós todos iremos para o chá da Olívia! Não vemos a hora dessa pequena estar no meio de nós."
-        : "🎉 Eiii Pati, confira quem de nós poderá ir para o chá da Olívia:";
+        ? `${party} Eiii Pati, nós todos iremos para o chá da Olívia! Não vemos a hora dessa pequena estar no meio de nós.`
+        : `${party} Eiii Pati, confira quem de nós poderá ir para o chá da Olívia:`;
     }
 
     return encodeURIComponent(`${intro}\n\n${statusList}`);
