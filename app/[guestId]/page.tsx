@@ -1,22 +1,23 @@
 "use client";
 
 import ScrollDownButton from "@/components/ScrollDownButton";
-import InitialPage from "../pages/InitialPage";
-import InvitePage from "../pages/InvitePage";
+import InitialPage from "@/pages/InitialPage";
+import InvitePage from "@/pages/InvitePage";
 import GiftPage from "@/pages/GiftPage";
 import RVSPPage from "@/pages/RVSPPage";
 import { motion } from "framer-motion";
+import { useParams } from "next/navigation";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-  const invited = Array.isArray(searchParams.nome)
-    ? searchParams.nome
-    : searchParams.nome
-    ? [searchParams.nome]
-    : [];
+const guests: Record<string, string[]> = {
+  "vovo-diana": ["Vovó Diana", "Vovô Evandro", "Tia Lelê"],
+  "vovo-eliana": ["Vovó Eliana", "Vovô Nené"],
+  "tia-preta":  ["Tia Preta", "Tio Lô"],
+  "tia-deda":  ["Tia Deda", "Tio Tamiro", "Juju"],
+};
+
+export default function Home() {
+  const { guestId } = useParams<{ guestId: string }>() ?? {};
+  const invited = guestId && guests[guestId] ? guests[guestId] : [];
 
   return (
     <motion.div
