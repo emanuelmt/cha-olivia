@@ -18,13 +18,16 @@ export default function RVSPPage({ invited = [] }: Props) {
   const whatsappMessage = useMemo(() => {
     const allFalse = Object.values(confirmed).every((c) => !c);
     const isSingle = invited.length === 1;
-const check = "\u2705"; // ✅
-const cross = "\u274C"; // ❌
-const party = "\uD83C\uDF89"; // 🎉
-const sad = "\uD83D\uDE22";   // 😢
+    const check = "%E2%9C%85"; // ✅
+    const cross = "%E2%9D%8C"; // ❌
+    const party = "%F0%9F%8E%89"; // 🎉
+    const sad = "%F0%9F%98%A2"; // 😢
 
     const statusList = invited
-      .map((name) => `${name}: ${confirmed[name] ? `${cross} sim` : `${cross} não`}`)
+      .map(
+        (name) =>
+          `${name}: ${confirmed[name] ? `${check} sim` : `${cross} não`}`
+      )
       .join("\n");
 
     let intro = "";
