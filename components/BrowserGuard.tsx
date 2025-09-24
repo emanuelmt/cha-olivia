@@ -6,10 +6,19 @@ export default function BrowserGuard({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     const ua = navigator.userAgent.toLowerCase();
+    const isSamsung = ua.includes("samsungbrowser");
+    const isMobile = /android|iphone|ipad|ipod/i.test(ua);
 
-    if (ua.includes("samsungbrowser")) {
-      setBlocked("Parece que você está usando o Samsung Internet 😅. Por favor, abra este convite no Chrome.");
-    } else if (!/android|iphone|ipad|ipod/i.test(ua)) {
+    if (isSamsung && isMobile) {
+      // URL que você quer abrir no Chrome
+      const targetUrl = window.location.href;
+
+      // Intent para abrir no Chrome
+      const chromeIntent = `intent://${targetUrl.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
+
+      window.location.href = chromeIntent;
+      setBlocked("Esse convite não pode ser aberto nesse navegador. Tente utilizar o Google Chrome.");
+    } else if (!isMobile) {
       setBlocked("Esse convite deve ser aberto no celular 📱. Tente acessar pelo seu smartphone.");
     }
   }, []);

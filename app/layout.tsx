@@ -28,6 +28,16 @@ export default function RootLayout({
       <head>
         <meta name="color-scheme" content="light"/>
         <meta name="theme-color" content="#fefefe"/>
+        <title>Chá da Olívia 🎉</title>
+        <meta property="og:title" content="Chá da Olívia 🎉" />
+        <meta property="og:description" content="Contamos com a sua presença para comemorar a chegada da nossa princesinha!" />
+        <meta property="og:image" content="https://cha-baby-olivia.vercel.app/LogoInicial.png" />
+        <meta property="og:url" content="https://cha-baby-olivia.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Chá da Olívia 🎉" />
+        <meta name="twitter:description" content="Contamos com a sua presença para comemorar a chegada da nossa princesinha!" />
+        <meta name="twitter:image" content="https://cha-baby-olivia.vercel.app/LogoInicial.png" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"

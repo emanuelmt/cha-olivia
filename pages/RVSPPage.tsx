@@ -18,27 +18,23 @@ export default function RVSPPage({ invited = [] }: Props) {
   const whatsappMessage = useMemo(() => {
     const allFalse = Object.values(confirmed).every((c) => !c);
     const isSingle = invited.length === 1;
-    const check = "%E2%9C%85"; // ✅
-    const cross = "%E2%9D%8C"; // ❌
-    const party = "%F0%9F%8E%89"; // 🎉
-    const sad = "%F0%9F%98%A2"; // 😢
 
     const statusList = invited
       .map(
         (name) =>
-          `${name}: ${confirmed[name] ? `${check} sim` : `${cross} não`}`
+          `${name}: ${confirmed[name] ? `sim` : `não`}`
       )
       .join("\n");
 
     let intro = "";
     if (allFalse) {
       intro = isSingle
-        ? `${sad} Eiii Pati, infelizmente não conseguirei ir ao chá da Olívia! Mas estou muito ansioso(a) pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.`
-        : `${sad} Eiii Pati, infelizmente não conseguiremos ir ao chá da Olívia! Mas estamos muito ansiosos pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.`;
+        ? `😢 Pati, infelizmente não conseguirei ir ao chá da Olívia! Mas estou muito ansioso(a) pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.`
+        : `😢 Pati, infelizmente não conseguiremos ir ao chá da Olívia! Mas estamos muito ansiosos pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.`;
     } else {
       intro = isSingle
-        ? `${party} Eiii Pati, nós todos iremos para o chá da Olívia! Não vemos a hora dessa pequena estar no meio de nós.`
-        : `${party} Eiii Pati, confira quem de nós poderá ir para o chá da Olívia:`;
+        ? `🎉 Eiii Pati, nós todos iremos para o chá da Olívia! Não vemos a hora dessa pequena estar no meio de nós.`
+        : `🎉 Eiii Pati, confira quem de nós poderá ir para o chá da Olívia:`;
     }
 
     return encodeURIComponent(`${intro}\n\n${statusList}`);
