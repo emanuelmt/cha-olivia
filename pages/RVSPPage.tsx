@@ -18,19 +18,23 @@ export default function RVSPPage({ invited = [] }: Props) {
   const whatsappMessage = useMemo(() => {
     const allFalse = Object.values(confirmed).every((c) => !c);
     const isSingle = invited.length === 1;
+const check = "\u2705"; // ✅
+const cross = "\u274C"; // ❌
+const party = "\uD83C\uDF89"; // 🎉
+const sad = "\uD83D\uDE22";   // 😢
 
     const statusList = invited
-      .map((name) => `${name}: ${confirmed[name] ? "✅" : "❌"}`)
+      .map((name) => `${name}: ${confirmed[name] ? `${cross} sim` : `${cross} não`}`)
       .join("\n");
 
     let intro = "";
     if (allFalse) {
       intro = isSingle
-        ? "😢 Eiii Pati, infelizmente não conseguirei ir ao chá da Olívia! Mas estou muito ansioso(a) pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente."
-        : "😢 Eiii Pati, infelizmente não conseguiremos ir ao chá da Olívia! Mas estamos muito ansiosos pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.";
+        ? `${sad} Eiii Pati, infelizmente não conseguirei ir ao chá da Olívia! Mas estou muito ansioso(a) pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.`
+        : `${sad} Eiii Pati, infelizmente não conseguiremos ir ao chá da Olívia! Mas estamos muito ansiosos pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.`;
     } else {
       intro = isSingle
-        ? "🎉 Eiii Pati, confira se poderei ir para o chá da Olívia:"
+        ? "🎉 Eiii Pati, nós todos iremos para o chá da Olívia! Não vemos a hora dessa pequena estar no meio de nós."
         : "🎉 Eiii Pati, confira quem de nós poderá ir para o chá da Olívia:";
     }
 
@@ -63,7 +67,7 @@ export default function RVSPPage({ invited = [] }: Props) {
         {invited.map((name) => (
           <div
             key={name}
-            className="flex items-center justify-between bg-white/10 p-1 rounded-xl"
+            className="flex items-center justify-between p-1 rounded-xl"
           >
             <span className="text-2xl font-questrial text-primary">{name}</span>
 
