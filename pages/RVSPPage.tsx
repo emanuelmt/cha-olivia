@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Section from "@/components/Section";
 import Image from "next/image";
 
 type Props = { invited: string[] };
 
 export default function RVSPPage({ invited = [] }: Props) {
-  // cria um estado com cada convidado inicialmente "false" (não confirmado)
   const [confirmed, setConfirmed] = useState<Record<string, boolean>>(
     Object.fromEntries(invited.map((name) => [name, false]))
   );
@@ -15,6 +14,30 @@ export default function RVSPPage({ invited = [] }: Props) {
   const toggleConfirmed = (name: string) => {
     setConfirmed((prev) => ({ ...prev, [name]: !prev[name] }));
   };
+
+  const whatsappMessage = useMemo(() => {
+    const allFalse = Object.values(confirmed).every((c) => !c);
+    const isSingle = invited.length === 1;
+
+    const statusList = invited
+      .map((name) => `${name}: ${confirmed[name] ? "✅" : "❌"}`)
+      .join("\n");
+
+    let intro = "";
+    if (allFalse) {
+      intro = isSingle
+        ? "😢 Eiii Pati, infelizmente não conseguirei ir ao chá da Olívia! Mas estou muito ansioso(a) pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente."
+        : "😢 Eiii Pati, infelizmente não conseguiremos ir ao chá da Olívia! Mas estamos muito ansiosos pela chegada dessa princesinha e poderemos viver muitos momentos juntos futuramente.";
+    } else {
+      intro = isSingle
+        ? "🎉 Eiii Pati, confira se poderei ir para o chá da Olívia:"
+        : "🎉 Eiii Pati, confira quem de nós poderá ir para o chá da Olívia:";
+    }
+
+    return encodeURIComponent(`${intro}\n\n${statusList}`);
+  }, [confirmed, invited]);
+
+  const whatsappLink = `https://wa.me/5527999742005?text=${whatsappMessage}`;
 
   return (
     <Section id="rvsp-page" className="flex-col items-center px-5 pt-0">
@@ -31,10 +54,12 @@ export default function RVSPPage({ invited = [] }: Props) {
         </div>
       </div>
       <p className="text-primary font-questrial my-4 text-xl text-shadow-sm mx-2">
-        É muito importante para nós que vocês confirme a presença até o dia <span className="font-bold">15 de outubro</span>, assim poderemos nos organizar e preparar um momento muito especial para todos.
+        É muito importante para nós que vocês confirmem a presença até o dia{" "}
+        <span className="font-bold">15 de outubro</span>, assim poderemos nos
+        organizar e preparar um momento muito especial para todos.
       </p>
 
- <div className="mt-2 w-full z-10">
+      <div className="mt-2 w-full z-10">
         {invited.map((name) => (
           <div
             key={name}
@@ -60,7 +85,7 @@ export default function RVSPPage({ invited = [] }: Props) {
       </div>
 
       <a
-        href="https://www.mercadolivre.com.br/presentes/cha-da-olivia-jc9lw"
+        href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
         className="
@@ -85,16 +110,16 @@ export default function RVSPPage({ invited = [] }: Props) {
       <Image
         src="/EfeitoFundo.png"
         alt="Data"
-        width={2000}
-        height={2000}
-        className="w-[150%] h-auto absolute z-0 top-[15] right-50"
+        width={300}
+        height={300}
+        className="w-full h-auto absolute z-0 scale-130 rotate-45"
       />
       <Image
         src="/EfeitoFundo.png"
         alt="Data"
-        width={2000}
-        height={2000}
-        className="w-[150%] h-auto absolute z-0 bottom-0 left-40"
+        width={300}
+        height={300}
+        className="w-full h-auto absolute z-0 bottom-0 left-40 scale-130"
       />
     </Section>
   );

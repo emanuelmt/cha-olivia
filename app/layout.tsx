@@ -32,6 +32,13 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
+        <link
+        rel="preload"
+        href="/FundoLogoInicial.png"
+        as="image"
+        type="image/webp"
+        fetchPriority="high"
+        />
       </head>
       <body>{children}</body>
     </html>

@@ -7,7 +7,7 @@ export default function ScrollDownButton({ className = "" }: Props) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const container = document.querySelector("main");
+    const container = document.querySelector("#main-container");
     if (!container) return;
 
     const handleScroll = () => {
@@ -29,7 +29,7 @@ export default function ScrollDownButton({ className = "" }: Props) {
   }, []);
 
   const handleClick = () => {
-    const container = document.querySelector("main");
+    const container = document.querySelector("#main-container");
     if (!container) return;
 
     const sections = Array.from(container.querySelectorAll("section"));
@@ -38,7 +38,6 @@ export default function ScrollDownButton({ className = "" }: Props) {
 
     const lastSection = sections[sections.length - 1] as HTMLElement;
 
-    // atualizar visibilidade imediatamente
     setVisible(nextSection !== lastSection);
 
     container.scrollTo({
@@ -46,12 +45,11 @@ export default function ScrollDownButton({ className = "" }: Props) {
       behavior: "smooth",
     });
 
-    // atualizar novamente após scroll smooth (~400ms)
     setTimeout(() => {
       const containerBottom = container.scrollTop + container.clientHeight;
       const lastSectionTop = lastSection.offsetTop;
       setVisible(containerBottom < lastSectionTop + lastSection.offsetHeight);
-    }, 400);
+    }, 200);
   };
 
   if (!visible) return null;
