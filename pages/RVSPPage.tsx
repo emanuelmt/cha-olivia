@@ -58,7 +58,7 @@ export default function RVSPPage({ invited = [] }: Props) {
       </div>
       <p className="text-primary font-questrial my-4 text-xl text-shadow-sm mx-2">
         É muito importante para nós que vocês confirmem a presença até o dia{" "}
-        <span className="font-bold">15 de outubro</span>, assim poderemos nos
+        <span className="font-bold">20 de outubro</span>, assim poderemos nos
         organizar e preparar um momento muito especial para todos.
       </p>
 
